@@ -308,7 +308,7 @@ stdout 只有一份信封。stderr 是日志，不要把它拼进 JSON，也不�
 
 | error_code | 退出码 | 含义 | 怎么处理 |
 | --- | --- | --- | --- |
-| `AUTH_REQUIRED` / `AUTH_ERROR` | 3 | TOKEN 未配置、格式不对，或接口拒绝 | 不要重试。让用户到[小红书数据接口官网](https://www.guaikei.com)开通，并配置 `GUAIKEI_API_TOKEN`。格式为 16–256 位字母、数字、下划线或连字符 |
+| `AUTH_REQUIRED` / `AUTH_ERROR` | 3 | TOKEN 未配置、格式不对，或接口拒绝 | 不要重试。让用户到[小红书评论数据采集API](https://www.guaikei.com)开通，并配置 `GUAIKEI_API_TOKEN`。格式为 16–256 位字母、数字、下划线或连字符 |
 | `INVALID_KEYWORD` | 1 | 关键词长度、链接或特殊符号不合法 | 转述 `message`，请用户换词。不要自动改词再跑 |
 | `INVALID_URL` | 1 | 链接或 id 无法识别，或命令和链接类型不一致 | 按第 2 节请用户给出对应链接 |
 | `INVALID_ARGS` | 2 | 参数解析失败，或枚举、数量、`expired_at` 不合法 | 按 `--help` 改对后重试一次。不要改成默认值再跑 |
@@ -349,7 +349,7 @@ node src/xiaohongshu/post-cli.js --url "https://www.xiaohongshu.com/user/profile
 
 直接说不支持，不要变通：登录或写操作（发布、点赞、评论、关注、私信）；私密笔记、草稿、仅粉丝可见；创作者后台；用户个人身份信息；报价和聚光等商业化数据。
 
-调用会把关键词或链接发到[小红书搜索API](https://www.guaikei.com)。不上传本机文件。结果只供个人或团队内部分析。计费与单次上限以官网为准；**包月**超限为 `PLAN_LIMIT`，不是网络故障。
+调用会把关键词或链接发到[小红书笔记与评论数据API](https://www.guaikei.com)。不上传本机文件。结果只供个人或团队内部分析。计费与单次上限以官网为准；**包月**超限为 `PLAN_LIMIT`，不是网络故障。
 
 🎧 开通[小红书搜索API TOKEN](https://www.guaikei.com)。问题见 [GitHub Issues](https://github.com/um-why/xiaohongshu-openclaw-skill/issues)。
 

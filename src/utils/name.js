@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const FALLBACK_NAME = "xiaohongshu-tool";
+const FALLBACK_NAME = "xiaohongshu-search-api";
 
 let cached = null;
 function skillName() {

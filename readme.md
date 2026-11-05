@@ -4,7 +4,7 @@
 
 **只读公开数据 · 不登录你的小红书账号 · 按量最多 1 万条；包月搜索/作品/评论分别最多 40/30/20 · 装进 Agent 就能用人话说**
 
-[开通小红书数据 TOKEN](https://www.guaikei.com)
+[开通小红书笔记搜索API TOKEN](https://www.guaikei.com)
 
 ---
 
@@ -39,7 +39,7 @@
 
 **1. 开通 TOKEN**
 
-到[小红书竞品分析助手官网](https://www.guaikei.com)开通。TOKEN 是 16–256 位的字符串。
+到[小红书竞品分析数据接口](https://www.guaikei.com)开通。TOKEN 是 16–256 位的字符串。
 
 **2. 配到环境变量**
 
@@ -128,10 +128,10 @@ node src/xiaohongshu/search-cli.js --keyword "露营装备" --type 2 --sort 2 --
 不用。这个技能不碰你的账号，也不做发布、点赞、评论、关注。
 
 **数据从哪来？**
-经[小红书公开数据接口](https://www.guaikei.com)返回，只覆盖小红书公开可见的内容。除了关键词和链接这类查询参数，不上传你电脑上的其他数据。结果请在个人或团队内部分析时使用。
+经[小红书笔记搜索API](https://www.guaikei.com)返回，只覆盖小红书公开可见的内容。除了关键词和链接这类查询参数，不上传你电脑上的其他数据。结果请在个人或团队内部分析时使用。
 
 **一定要 TOKEN 吗？**
-要。接口按 TOKEN 调用。开通入口在[小红书搜索API官网](https://www.guaikei.com)。
+要。接口按 TOKEN 调用。开通入口在[小红书数据采集API](https://www.guaikei.com)。
 
 **查一条要等多久？**
 小批量通常一轮查询就能回来。条数大、或者任务还在处理时，命令会继续等，屏幕上的「处理中」不是失败。等命令结束再看结果。
@@ -146,7 +146,7 @@ node src/xiaohongshu/search-cli.js --keyword "露营装备" --type 2 --sort 2 --
 技能侧硬上限 10000 条/次（按量 Token）。**包月 Token** 搜索最多 40、作品最多 30、评论最多 20，超限返回 `PLAN_LIMIT`（退出码 1），不要当网络错误重试。具体计费口径以官网说明为准。
 
 **报错 `PLAN_LIMIT` / 提示包月受限？**
-降低 `--limit` 后须用户同意再跑，或到[官网](https://www.guaikei.com)升级按量；**禁止同参重试**。
+降低 `--limit` 后须用户同意再跑，或到[小红书搜索API](https://www.guaikei.com)升级按量；**禁止同参重试**。
 
 ---
 
@@ -182,6 +182,6 @@ node src/xiaohongshu/post-cli.js --url "https://www.xiaohongshu.com/user/profile
 
 ## 现在就可以开通
 
-去[小红书洞察分析助手官网开通 TOKEN](https://www.guaikei.com)
+去[小红书笔记数据采集API开通 TOKEN](https://www.guaikei.com)
 
 问题反馈 [GitHub Issues](https://github.com/um-why/xiaohongshu-openclaw-skill/issues)
