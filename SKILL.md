@@ -6,6 +6,11 @@ name: xiaohongshu-search-api
 description: "小红书公开数据只读技能：关键词搜笔记、爆款选题、笔记详情、评论舆情、博主作品、粉丝获赞与收藏，输出 JSON，不登录不发布。触发词：小红书、小红薯、xhs、rednote、笔记链接、博主主页、竞品监控、KOL筛选、评论分析。用户要查小红书笔记、评论、选题、竞品或舆情时使用；抖音、快手、B站、微博、公众号不要用本技能。"
 license: MIT
 version: 1.2.2
+display_name: "小红薯搜索API｜笔记搜索·笔记详情·评论·博主作品"
+display_name_en: "Rednote Search API"
+description_zh: "小红书公开数据只读接口：关键词搜索笔记与爆款选题、单篇笔记详情、评论舆情、博主作品列表、粉丝获赞与收藏数据；按量最多 1 万条，包月搜索/作品/评论分别最多 40/30/20；全部以结构化 JSON 输出，不登录、不发布、不点赞、不评论、不关注，适用于选题、竞品监控、KOL 筛选、种草分析与评论舆情。"
+description_en: "Read-only Xiaohongshu public data API: keyword search for notes and viral topics, single note detail, comments and sentiment, creator post lists, and follower/like/collection stats; up to 10,000 rows per pay-as-you-go call, with monthly caps of 40 searches / 30 posts / 20 comment queries; all returned as structured JSON, with no login and no posting, liking, commenting or following; for topic selection, competitor monitoring, KOL screening, seeding analysis and comment sentiment."
+author: "新郑市怪奇信息技术工作室"
 homepage: https://www.guaikei.com
 metadata:
   openclaw:
