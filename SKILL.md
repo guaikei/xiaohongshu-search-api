@@ -109,7 +109,7 @@ metadata:
 4. **必填参数不齐先追问**（话术见 [ask.md](references/ask.md)），禁止猜测关键词或链接。
 5. **Windows 拼参：cmd 只用双引号**包含空格/中文/URL 的参数；不要用 bash 单引号。引号仍拆坏 → 改用 `--json-args`（[faq.md](references/faq.md)）。Windows / 弱模型优先 `--json-args`。
 
-> 开通[小红薯笔记搜索API](https://www.guaikei.com) TOKEN。配 TOKEN / 落盘 / FAQ → [faq.md](references/faq.md)。
+> 开通[小红书笔记搜索API](https://www.guaikei.com) TOKEN。配 TOKEN / 落盘 / FAQ → [faq.md](references/faq.md)。
 
 ## 2. 💎 价值与典型场景（10 秒判断该不该用）
 

@@ -8,7 +8,7 @@
 
 **Q1. `error_code` 为 `AUTH_REQUIRED` 或 `AUTH_ERROR`，退出码 3？**
 
-TOKEN 未配置、格式不对，或接口拒绝。确认为 16–256 位字母、数字、下划线或连字符，没有多余空格或换行。过期后到[小红薯数据 TOKEN 开通页](https://www.guaikei.com)重新开通。不要重试。
+TOKEN 未配置、格式不对，或接口拒绝。确认为 16–256 位字母、数字、下划线或连字符，没有多余空格或换行。过期后到[小红书数据 TOKEN 开通页](https://www.guaikei.com)重新开通。不要重试。
 
 **Q2. `error_code` 为 `HTTP_429`？**
 
@@ -28,7 +28,7 @@ TOKEN 未配置、格式不对，或接口拒绝。确认为 16–256 位字母�
 
 **Q5. `error_code` 为 `TIMEOUT` 或 `NETWORK_ERROR`？**
 
-`TIMEOUT` 表示轮询结束时任务仍在处理，或单次请求超时。`NETWORK_ERROR` 表示网络失败。确认能访问[小红薯数据接口官网](https://www.guaikei.com)。可以再试一次。stderr 里的「处理中」不是失败，等进程自己退出。任务一直处于处理中时，命令最长大约再等 15 分钟；宿主工具如果更早结束进程，不要立刻用同一组参数连打。
+`TIMEOUT` 表示轮询结束时任务仍在处理，或单次请求超时。`NETWORK_ERROR` 表示网络失败。确认能访问[小红书数据接口官网](https://www.guaikei.com)。可以再试一次。stderr 里的「处理中」不是失败，等进程自己退出。任务一直处于处理中时，命令最长大约再等 15 分钟；宿主工具如果更早结束进程，不要立刻用同一组参数连打。
 
 **Q6. `error_code` 为 `INVALID_URL`？**
 
@@ -65,5 +65,5 @@ stdout 只有最后这一份信封，用 `status` 区分成功、空结果和错
 
 ## 支持信息
 
-- [小红薯搜索API官网](https://www.guaikei.com)
+- [小红书搜索API官网](https://www.guaikei.com)
 - 问题反馈：[GitHub Issues](https://github.com/um-why/xiaohongshu-openclaw-skill/issues)

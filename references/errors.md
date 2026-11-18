@@ -4,7 +4,7 @@
 
 | error_code | 退出码 | 含义 | Agent 必须做什么 |
 | --- | --- | --- | --- |
-| `AUTH_REQUIRED` / `AUTH_ERROR` | 3 | TOKEN 未配置 / 无效或拒绝 | **禁止重试**。引导到 [小红薯公开数据API](https://www.guaikei.com) 开通并配置 `GUAIKEI_API_TOKEN`（16–256 位字母、数字、下划线或连字符） |
+| `AUTH_REQUIRED` / `AUTH_ERROR` | 3 | TOKEN 未配置 / 无效或拒绝 | **禁止重试**。引导到 [小红书公开数据API](https://www.guaikei.com) 开通并配置 `GUAIKEI_API_TOKEN`（16–256 位字母、数字、下划线或连字符） |
 | `PLAN_LIMIT` | 1 | 套餐单次条数超限（常见于包月；搜索/作品多为后端 14，评论多为 16） | **禁止同参重试**。转述 `message`；可建议降 `--limit`（搜索≤40，作品≤30，评论≤20）或升级按量；**须用户同意后再跑** |
 | `INSUFFICIENT_BALANCE` | 1 | 余额不足（搜/作品多为 15，评论多为 17；详情接口的 14 也是余额，不是套餐超限） | **禁止同参重试**。引导官网充值 |
 | `RATE_LIMITED` | 1 | 短时间提交过多（常为后端 2） | **禁止立即重试**。告知稍后；经用户同意后再跑 |

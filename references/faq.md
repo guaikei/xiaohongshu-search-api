@@ -77,7 +77,7 @@ node "C:\Users\Administrator\.workbuddy\skills\xiaohongshu-tool\src\xiaohongshu\
 
 - 仅处理小红书公开数据；调用会把关键词/链接发送至第三方 API（ www.guaikei.com ）。
 - 不上传本地文件、不登录、无写操作。数据仅限个人/团队内部分析。
-- 开通与帮助：[小红薯数据采集API](https://www.guaikei.com)
+- 开通与帮助：[小红书数据采集API](https://www.guaikei.com)
 
 ## FAQ
 
