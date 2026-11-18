@@ -4,11 +4,11 @@
 
 本文件补充常见现象说明。失败时读 stdout 里那一份 JSON 的 `error_code` 和 `message`。stderr 只有运行日志。
 
-成功结果写在系统临时目录的 `xiaohongshu-guaikei/logs/当天日期/`。Windows 通常是 `%TEMP%`，macOS / Linux 是 `os.tmpdir()`。不在技能目录里，系统清理临时文件后会消失。`XHS_GUAIKEI_DISABLE_LOG=1` 可以关闭落盘。
+默认不落盘。需要留底时加 `--save` 或设 `GUAIKEI_ENABLE_LOG=1`，写入系统临时目录 `xiaohongshu-guaikei/logs/当天日期/`（Windows 多为 `%TEMP%`）。旧 `XHS_GUAIKEI_DISABLE_LOG` 已废弃。
 
 **Q1. `error_code` 为 `AUTH_REQUIRED` 或 `AUTH_ERROR`，退出码 3？**
 
-TOKEN 未配置、格式不对，或接口拒绝。确认为 16–256 位字母、数字、下划线或连字符，没有多余空格或换行。过期后到[小红书数据 TOKEN 开通页](https://www.guaikei.com)重新开通。不要重试。
+TOKEN 未配置、格式不对，或接口拒绝。确认为 16–256 位字母、数字、下划线或连字符，没有多余空格或换行。过期后到[小红薯数据 TOKEN 开通页](https://www.guaikei.com)重新开通。不要重试。
 
 **Q2. `error_code` 为 `HTTP_429`？**
 
@@ -28,7 +28,7 @@ TOKEN 未配置、格式不对，或接口拒绝。确认为 16–256 位字母�
 
 **Q5. `error_code` 为 `TIMEOUT` 或 `NETWORK_ERROR`？**
 
-`TIMEOUT` 表示轮询结束时任务仍在处理，或单次请求超时。`NETWORK_ERROR` 表示网络失败。确认能访问[小红书数据接口官网](https://www.guaikei.com)。可以再试一次。stderr 里的「处理中」不是失败，等进程自己退出。任务一直处于处理中时，命令最长大约再等 15 分钟；宿主工具如果更早结束进程，不要立刻用同一组参数连打。
+`TIMEOUT` 表示轮询结束时任务仍在处理，或单次请求超时。`NETWORK_ERROR` 表示网络失败。确认能访问[小红薯数据接口官网](https://www.guaikei.com)。可以再试一次。stderr 里的「处理中」不是失败，等进程自己退出。任务一直处于处理中时，命令最长大约再等 15 分钟；宿主工具如果更早结束进程，不要立刻用同一组参数连打。
 
 **Q6. `error_code` 为 `INVALID_URL`？**
 
@@ -61,9 +61,9 @@ stdout 只有最后这一份信封，用 `status` 区分成功、空结果和错
 
 **Q12. 评论时间过滤和预期不一致？**
 
-参数名是 `--expired_at`（`--expire` 相同）。正整数表示近 N 天，`YYYY-MM-DD HH:mm:ss` 表示该时间之后。不传时命令按北京时间近 6 年换算成一个时间点，并写进 `request.expired_at`。它不是分页。
+参数名是 `--expired_at`（`--expire` 相同）。`1-2190` 表示近 N 天（约 6 年），`YYYY-MM-DD HH:mm:ss` 表示该时间之后（不早于 2000-01-01、不能未来）。勿传 Unix 时间戳。不传时命令按北京时间近 6 年换算成一个时间点，并写进 `request.expired_at`。它不是分页。
 
 ## 支持信息
 
-- [小红书搜索API官网](https://www.guaikei.com)
+- [小红薯搜索API官网](https://www.guaikei.com)
 - 问题反馈：[GitHub Issues](https://github.com/um-why/xiaohongshu-openclaw-skill/issues)

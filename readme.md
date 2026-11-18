@@ -4,9 +4,9 @@
 
 **只读公开数据 · 不登录你的小红书账号 · 按量最多 1 万条；包月搜索 / 作品 / 评论分别最多 40 / 30 / 20 · 装进 Agent 就能用口语化指令获取数据**
 
-**维护状态**：持续更新中，当前版本 `1.2.2`，[更新日志](references/changelog.md)。Agent 执行卡见 [SKILL.md](SKILL.md)。
+**维护状态**：持续更新中，当前版本 `1.2.3`，[更新日志](references/changelog.md)。Agent 执行卡见 [SKILL.md](SKILL.md)。
 
-👉 开通 [开通小红书笔记搜索API TOKEN](https://www.guaikei.com)
+👉 开通 [开通小红薯笔记搜索API TOKEN](https://www.guaikei.com)
 
 > **🔥 核心优势（适合放进 Agent）**
 >
@@ -51,7 +51,7 @@
 
 **1. 开通 TOKEN**
 
-到[小红书搜索API官网](https://www.guaikei.com)开通。TOKEN 是 16–256 位的字符串。
+到[小红薯搜索API官网](https://www.guaikei.com)开通。TOKEN 是 16–256 位的字符串。
 
 **2. 配到环境变量**
 
@@ -148,7 +148,7 @@ node src/xiaohongshu/post-cli.js --url "https://www.xiaohongshu.com/user/profile
 | 参数 | 缩写 | 必填 | 取值 | 默认 |
 | --- | --- | --- | --- | --- |
 | `--url` | `-u` | ✅ | 笔记链接或 24 位笔记 id（含 `explore`、`discovery/item`、短链） | — |
-| `--expired_at` | `-e` | | 正整数天数，或 `YYYY-MM-DD HH:mm:ss`（`--expire` 同义） | 不传则按北京时间近 6 年换算 |
+| `--expired_at` | `-e` | | `1-2190` 天（约 6 年），或 `YYYY-MM-DD HH:mm:ss`（不早于 2000、不能未来；`--expire` 同义）。勿传 Unix 时间戳 | 不传则按北京时间近 6 年换算 |
 | `--limit` | `-l` | | 1–10000（**包月最多 20**） | `10` |
 
 `expired_at` 是时间过滤，不是分页。`limit=10000` 且 `expired_at=1` 也只返回近 1 天的评论。同样支持整段粘贴 App 分享文案自动抽链。
@@ -182,7 +182,7 @@ node src/xiaohongshu/post-cli.js --url "https://www.xiaohongshu.com/user/profile
     "limit": 20
   },
   "metadata": {
-    "skill_version": "1.2.2",
+    "skill_version": "1.2.3",
     "runtime_version": "22.x",
     "execution_time": 34210
   },
@@ -224,10 +224,10 @@ node src/xiaohongshu/post-cli.js --url "https://www.xiaohongshu.com/user/profile
 不用。这个技能不碰你的账号，也不做发布、点赞、评论、关注。
 
 **📡 数据从哪来？**  
-经[小红书笔记搜索API](https://www.guaikei.com)返回，只覆盖小红书公开可见的内容。除了关键词和链接这类查询参数，不上传你电脑上的其他数据。结果请在个人或团队内部分析时使用。
+经[小红薯笔记搜索API数据源](https://www.guaikei.com)返回，只覆盖小红书公开可见的内容。除了关键词和链接这类查询参数，不上传你电脑上的其他数据。结果请在个人或团队内部分析时使用。
 
 **🔑 一定要 TOKEN 吗？**  
-要。接口按 TOKEN 调用。开通入口在[小红书笔记与评论数据API](https://www.guaikei.com)。
+要。接口按 TOKEN 调用。开通入口在[小红薯笔记与评论数据API](https://www.guaikei.com)。
 
 **⏱️ 查一条要等多久？**  
 小批量通常一轮查询就能回来。条数大、或者任务还在处理时，命令会继续等，屏幕上的「处理中」不是失败。等命令结束再看结果。
@@ -242,7 +242,7 @@ node src/xiaohongshu/post-cli.js --url "https://www.xiaohongshu.com/user/profile
 技能侧硬上限 10000 条/次（按量 Token）。**包月 Token** 搜索最多 40、作品最多 30、评论最多 20，超限返回 `PLAN_LIMIT`（退出码 1），不要当网络错误重试。具体计费口径以官网说明为准。
 
 **⚠️ 报错 `PLAN_LIMIT` / 提示包月受限？**  
-降低 `--limit` 后须用户同意再跑，或到[小红书搜索API](https://www.guaikei.com)升级按量；**禁止同参重试**。
+降低 `--limit` 后须用户同意再跑，或到[小红薯搜索API套餐页](https://www.guaikei.com)升级按量；**禁止同参重试**。
 
 ---
 
@@ -252,7 +252,7 @@ node src/xiaohongshu/post-cli.js --url "https://www.xiaohongshu.com/user/profile
 - 不做写操作
 - 按量最多 1 万条；包月更低（搜索 40 / 作品 30 / 评论 20）。用户没说要多少时，搜索默认 20，评论默认 10，博主默认只看资料
 
-成功结果会记在系统临时目录的 `xiaohongshu-guaikei/logs/当天日期/`，不写进技能目录。`XHS_GUAIKEI_DISABLE_LOG=1` 可关闭落盘。
+默认不落盘。需要留底时加 `--save` 或设 `GUAIKEI_ENABLE_LOG=1`，写入系统临时目录 `xiaohongshu-guaikei/logs/当天日期/`（不写进技能目录）。旧 `XHS_GUAIKEI_DISABLE_LOG` 已废弃。
 
 ---
 
@@ -272,6 +272,6 @@ node src/xiaohongshu/post-cli.js --url "https://www.xiaohongshu.com/user/profile
 
 ## 🎉 现在就可以开通
 
-去[小红书竞品分析数据接口](https://www.guaikei.com) 开通 TOKEN
+去[小红薯搜索API TOKEN 开通入口](https://www.guaikei.com) 开通 TOKEN
 
 问题反馈 [GitHub Issues](https://github.com/um-why/xiaohongshu-openclaw-skill/issues)
